@@ -1,20 +1,11 @@
-import { createPool, Pool } from "mariadb";
+import postgres from "postgres";
 
-let globalPool: Pool | undefined = undefined;
+const sql = postgres("postgres://username:password@host:port/database", {
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS,
+});
 
-export async function db(): Promise<Pool> {
-  if (globalPool) {
-    return globalPool;
-  }
-
-  globalPool = await createPool({
-    host: "localhost",
-    port: 3306,
-    user: "root",
-    password: "password",
-    database: "wnab",
-    connectionLimit: 10,
-  });
-
-  return globalPool;
-}
+export default sql;
