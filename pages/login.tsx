@@ -1,7 +1,10 @@
+import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import InputGroup from "../components/Input/Group";
 
 export default function LoginPage() {
+  const router = useRouter();
+
   const [user, setUser] = useState({
     username: "",
     password: "",
@@ -31,7 +34,7 @@ export default function LoginPage() {
     });
     const response = await login.json();
 
-    console.log(response);
+    if (response.success) return router.push("/");
   };
 
   return (
