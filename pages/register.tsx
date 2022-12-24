@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import InputGroup from "../components/Input/Group";
 import { User } from "./api/user/register";
 
 export default function RegisterPage() {
+  const router = useRouter();
+
   const [user, setUser] = useState<User>({
     username: "",
     password: "",
@@ -40,7 +43,10 @@ export default function RegisterPage() {
     });
     const response = await register.json();
 
-    if (response.success) setIsRegistered(true);
+    if (response.success) {
+      setIsRegistered(true);
+      router.push("/");
+    }
   };
 
   if (isRegistered) return <></>;
