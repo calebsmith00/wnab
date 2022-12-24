@@ -26,6 +26,14 @@ export default async function userRegisterApi(
   if (!username || !password || !hashedPw || !email)
     return res.status(400).json({});
 
+  const userExists = await sql`select email from users where email = ${email}`;
+
+  if (userExists.length > 0)
+    return res.status(400).json({
+      success: false,
+      message: `User already exists with that email!`,
+    });
+
   await sql`
     insert into users (username, password, email) values(${username}, ${hashedPw}, ${email})
   `;
