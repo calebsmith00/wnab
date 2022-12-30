@@ -9,7 +9,7 @@ export default function BudgetCreate() {
 
   return (
     <div
-      className="bg-gray-500/50 rounded-xl p-10 m-5 cursor-pointer"
+      className="bg-green-400/50 rounded-xl p-10 m-5 cursor-pointer"
       onClick={handleCreate}
     >
       <div>Create New Budget</div>

@@ -1,8 +1,10 @@
+import { useRouter } from "next/router";
 import { ChangeEvent, MouseEvent, useState } from "react";
 import InputGroup from "../../components/Input/Group";
 
 export default function CreateNewBudget() {
   const [budget, setBudget] = useState<unknown>();
+  const router = useRouter();
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setBudget((prevState: any) => ({
@@ -23,7 +25,7 @@ export default function CreateNewBudget() {
     });
     const createResponse = await createRequest.json();
 
-    console.log(createResponse);
+    if (createResponse.success) router.push("/budgets");
   };
 
   return (
