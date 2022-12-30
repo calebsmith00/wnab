@@ -1,9 +1,24 @@
 import nodemailer from "nodemailer";
 import crypto from "crypto";
+import jwt from "jsonwebtoken";
 
-export default async function mailer(to: string, username: string) {
+export async function getVerificationCode(userID: string | number) {
+  const id = Number(userID);
+  const secret = process.env.JWT_SECRET;
+  if (!secret) return;
+
+  const token = jwt.sign({ userID: id }, secret.toString());
+
+  return token;
+}
+
+export default async function verificationMailer(
+  to: string,
+  username: string,
+  id: string | number
+) {
   try {
-    const verifyID = crypto.randomBytes(20).toString("hex");
+    const verifyID = await getVerificationCode(id);
 
     const transporter = nodemailer.createTransport({
       name: "example.com",
@@ -27,7 +42,7 @@ export default async function mailer(to: string, username: string) {
       subject: "Account Verification Required",
       html: body,
     });
-  } catch (e) {
-    console.log(`Error has occurred ${e}`);
+  } catch (e: any) {
+    console.log(e.toString());
   }
 }
