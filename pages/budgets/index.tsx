@@ -1,6 +1,7 @@
 import { NextPageContext } from "next";
-import BudgetCard from "../components/Budget/Card";
-import { getBudgets } from "./api/budget/retrieveByUser";
+import BudgetCard from "../../components/Budget/Card";
+import BudgetCreate from "../../components/Budget/Create";
+import { getBudgets } from "../api/budget/retrieveByUser";
 
 export default function Budgets(props: any) {
   const renderBudgets = () => {
@@ -15,6 +16,7 @@ export default function Budgets(props: any) {
       <h1 className="text-2xl pt-10">Budgets</h1>
       <div className="flex flex-wrap justify-center">
         {props.budgets.length > 0 && renderBudgets()}
+        <BudgetCreate />
       </div>
     </div>
   );
