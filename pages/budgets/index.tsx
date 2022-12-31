@@ -23,9 +23,13 @@ export default function Budgets(props: any) {
 }
 
 export async function getServerSideProps(ctx: NextPageContext) {
-  const budgets = await getBudgets(1);
+  try {
+    const budgets = await getBudgets(1);
 
-  return {
-    props: { budgets },
-  };
+    return {
+      props: { budgets },
+    };
+  } catch (e) {
+    return { props: { budgets: [] } };
+  }
 }
