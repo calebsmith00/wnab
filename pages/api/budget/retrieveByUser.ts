@@ -3,7 +3,7 @@ import sql from "../../../lib/database";
 
 export async function getBudgets(userID: number) {
   const budgets =
-    await sql`SELECT title FROM public.budgets WHERE user_id = ${userID}`;
+    await sql`SELECT title, id FROM public.budgets WHERE user_id = ${userID}`;
 
   if (budgets.length <= 0) throw new Error("No budget found with that user ID");
 
