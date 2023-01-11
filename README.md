@@ -8,7 +8,7 @@ This project is still in development, but I will update this README.md as more i
 
 1. Install [NodeJS](https://nodejs.org/en/) and [Git](https://git-scm.com/)
 2. Use the command line to navigate to where you'd like to clone the project (e.g: `cd c:\users\myself\documents`)
-3. Clone the repository by typing `git clone https://github.com/monkeyts/wnab.git`
+3. Clone the repository by typing `git clone https://github.com/calebsmith00/wnab.git`
 4. Install the required modules by typing `npm install`
 5. Configure the environment variables to match your own server configurations (should be setup at your own discretion):
 ```
