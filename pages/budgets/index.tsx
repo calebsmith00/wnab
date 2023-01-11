@@ -7,7 +7,7 @@ export default function Budgets(props: any) {
   const renderBudgets = () => {
     return props.budgets.map((budget: any, idx: number) => {
       if (!budget) return;
-      return <BudgetCard key={idx} title={budget.title} />;
+      return <BudgetCard key={budget.id} title={budget.title} id={budget.id} />;
     });
   };
 
